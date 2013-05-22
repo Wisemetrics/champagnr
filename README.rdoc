@@ -95,4 +95,4 @@ You can easily write into this files with these R functions:
 
 Thanks to our logging system and the way we handle errors. All bugs that can be handled post-mortem by looking at "application.log".
 
-You can customize the error handler here at "config/initialiers/backtrace.R"
+You can customize the error handler here at "config/initializers/backtrace.R"
