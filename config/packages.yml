@@ -1,0 +1,9 @@
+# Insert here all the libraries you need
+# Format: http://yaml.org/
+
+# Specify here your preferred CRAN miror
+miror: http://cran.univ-paris1.fr
+
+# Priority to form the first
+packages:
+  - ggplot2

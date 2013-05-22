@@ -1,0 +1,98 @@
+== Welcome to ChampaignR framework
+
+ChampaignR is a highly productive and easy-to-use framework for R developers.
+
+Inspired by
+  * Ruby On Rails for their philosophy of Convention Over Configuration, etc...
+  * [ProjectTemplate](https://github.com/johnmyleswhite/ProjectTemplate) for the job their already done by trying to make a template for all R projects.
+  * [r-server-template](https://github.com/HarlanH/r-server-template) for their way to maintain a R server and gracefully handle all signal that an Unix process can have.
+
+== Getting started
+
+From the root of your project simply run:
+  ./script/console.sh
+
+Or run your usual R command with your options like this:
+  R --no-restore
+
+And you're done!
+
+== Directory
+
+=== app
+
+This is the main folder where all your R files should be. There are already some folders that represents each step of data analysis but feel free to add yours.
+
+=== config
+
+Here you will find config stuff that normarly have not to change except at the setup of your application.
+
+=== config/packages.yml
+
+This simple file contains all your needed packages. These listed packages will automatically be installed and loaded.
+
+=== config/initializers.R
+
+This a sweet way to initialize something at startup. Just create a file per behavior and it will be automatically loaded.
+
+=== config/application.R
+
+This is the mail R file of your application. You can configure here the ChampaignR behaviors.
+
+=== config/boot.R
+
+This a our way to boot an application. You don't have edit this file.
+
+=== data
+
+Simply all your raw data.
+
+=== lib
+
+All the "external" librairies and more that is not part of your code.
+
+=== lib/batch
+
+All the batch task that you need to be executed by a CRON for example.
+
+=== log
+
+All your log files.
+
+=== script
+
+It contains the differents way to start your R envrionement.
+
+=== test
+
+This is damn important: unit testing!
+
+=== tmp
+
+Temporary files are stored here. Feel free to create your folders.
+
+=== tmp/cache
+
+This folder should contains cache files that R can access for a faster processing (Rdata, etc...). This folder should only contain files that can be regenerated, not important files.
+When your project will be mature, this folder can be mounted and shared among your slave computers (aka workers).
+
+=== .Rprofile
+
+This file just source config/application.R at startup. Your should not touch this file and put all your stuff into config/initializers.
+
+== Logging
+
+As we said above, all your log files are store in the log folder. But there is a default log file that is named "application.log".
+
+You can easily write into this files with these R functions:
+  debug(logger, 'A Debugging Message') # Won't print anything
+  info(logger, 'An Info Message')
+  warn(logger, 'A Warning Message')
+  error(logger, 'An Error Message')
+  fatal(logger, 'A Fatal Error Message')
+
+== Debugging
+
+Thanks to our logging system and the way we handle errors. All bugs that can be handled post-mortem by looking at "application.log".
+
+You can customize the error handler here at "config/initialiers/backtrace.R"
