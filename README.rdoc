@@ -21,7 +21,7 @@ And you're done!
 
 === app
 
-This is the main folder where all your R files should be. There are already some folders that represents each step of data analysis but feel free to add yours.
+This is the main folder where all your R files are automatically sourced. There are already some folders that represents each step of data analysis but feel free to add yours.
 
 === config
 
@@ -78,11 +78,11 @@ When your project will be mature, this folder can be mounted and shared among yo
 
 === .Rprofile
 
-This file just source config/application.R at startup. Your should not touch this file and put all your stuff into config/initializers.
+This file just source config/application.R at startup. Your should not touch this file. If you need to do something at startup, just put all your stuff into config/initializers.
 
 == Logging
 
-As we said above, all your log files are store in the log folder. But there is a default log file that is named "application.log".
+As we said above, all your log files are stored in the log folder. But there is a default log file that is named "application.log".
 
 You can easily write into this files with these R functions:
   debug(logger, 'A Debugging Message') # Won't print anything
