@@ -16,7 +16,7 @@ InstallIfMissing('yanl')
 library('yaml')
 
 # Defining application's packages from file "packages.yml"
-config.packages <- yaml.load_file("config/packages.yml")
+config.packages <- yaml.load_file(file.path('config', 'packages.yml'))
 
 # Defining CRAN miror
 options(repos=config.packages$miror)

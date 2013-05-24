@@ -7,7 +7,7 @@ champaignr.root = getwd()
 library('yaml')
 
 # Defining application's packages from file "packages.yml"
-config.packages <- yaml.load_file("config/packages.yml")
+config.packages <- yaml.load_file(file.path('config', 'packages.yml'))
 
 # Loading
 for (package in config.packages$packages) {
@@ -29,7 +29,7 @@ info(logger, 'Booting...')
 
 # -- Loading initializers
 
-sourceDirectory('config/initializers')
+sourceDirectory(file.path('config', 'initializers'))
 
 # -- Loading app
 
