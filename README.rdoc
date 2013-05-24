@@ -6,8 +6,8 @@ It provides great features: packages management, logging, debugging, server mode
 
 Inspired by
 * Ruby On Rails for their philosophy of Convention Over Configuration, etc...
-* (ProjectTemplate)[https://github.com/johnmyleswhite/ProjectTemplate] for the job their already done by trying to make a template for all R projects.
-* (r-server-template)[https://github.com/HarlanH/r-server-template] for their way to maintain a R server and gracefully handle all signal that an Unix process can have.
+* {ProjectTemplate}[https://github.com/johnmyleswhite/ProjectTemplate] for the job their already done by trying to make a template for all R projects.
+* {r-server-template}[https://github.com/HarlanH/r-server-template] for their way to maintain a R server and gracefully handle all signal that an Unix process can have.
 
 == Getting started
 
