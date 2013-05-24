@@ -32,7 +32,4 @@ options(keep.source = TRUE, error = quote({
   error(logger, geterrmessage())
   error(logger, paste("  ", 1L:n, ": ", calls, sep = ""))
 
-  # if (!interactive()) {
-  #   q()
-  # }
 }))

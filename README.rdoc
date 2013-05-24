@@ -1,23 +1,62 @@
 == Welcome to ChampaignR framework
 
-ChampaignR is a highly productive and easy-to-use framework for R developers.
+ChampaignR is a highly productive, lightweight, and easy-to-use framework for R developers.
+
+It provides great features: packages management, logging, debugging, server mode, etc...
 
 Inspired by
 * Ruby On Rails for their philosophy of Convention Over Configuration, etc...
-* [ProjectTemplate](https://github.com/johnmyleswhite/ProjectTemplate) for the job their already done by trying to make a template for all R projects.
-* [r-server-template](https://github.com/HarlanH/r-server-template) for their way to maintain a R server and gracefully handle all signal that an Unix process can have.
+* (ProjectTemplate)[https://github.com/johnmyleswhite/ProjectTemplate] for the job their already done by trying to make a template for all R projects.
+* (r-server-template)[https://github.com/HarlanH/r-server-template] for their way to maintain a R server and gracefully handle all signal that an Unix process can have.
 
 == Getting started
 
-From the root of your project simply run:
-  ./script/console.sh
+From the root of your project, install required packages by running:
+  R -f script/install.R
 
-Or run your usual R command with your options like this:
-  R --no-restore
+And then launch your console:
 
-And you're done!
+  R --no-save --no-restore -f config/application.R
+
+And here you go! You're ready to develop!
+
+== Packages
+
+Add your needed packages into "config/packages.yml" and then run:
+  R -f script/install.R
+
+== Server mode
+
+The server mode require a running instance of (redis)[http://redis.io/] (an in-memory key-value persistent storage). Redis will act as a queue for incoming jobs. Using a redis client (like redis-cli) push a command into the list "public_jobs" and your server will execute it.
+
+Configure your redis server like this:
+  TODO
+
+And then run your server:
+  R -f script/server.R
+
+== Logging
+
+As discribed below, all your log files are stored in the log folder. But there is a default log file that is named "application.log".
+
+You can easily write into this files with these R functions:
+  debug(logger, 'A Debugging Message') # Won't print anything
+  info(logger, 'An Info Message')
+  warn(logger, 'A Warning Message')
+  error(logger, 'An Error Message')
+  fatal(logger, 'A Fatal Error Message')
+
+== Debugging
+
+Thanks to our logging system and the way we handle errors. All bugs that can be handled post-mortem by looking at "application.log".
+
+Log contains a backtrace to know where bugs come from.
+
+You can customize the error handler here at "config/initializers/backtrace.R".
 
 == Directory
+
+To know more on how the framework works.
 
 === app
 
@@ -79,20 +118,3 @@ When your project will be mature, this folder can be mounted and shared among yo
 === .Rprofile
 
 This file just source config/application.R at startup. Your should not touch this file. If you need to do something at startup, just put all your stuff into config/initializers.
-
-== Logging
-
-As we said above, all your log files are stored in the log folder. But there is a default log file that is named "application.log".
-
-You can easily write into this files with these R functions:
-  debug(logger, 'A Debugging Message') # Won't print anything
-  info(logger, 'An Info Message')
-  warn(logger, 'A Warning Message')
-  error(logger, 'An Error Message')
-  fatal(logger, 'A Fatal Error Message')
-
-== Debugging
-
-Thanks to our logging system and the way we handle errors. All bugs that can be handled post-mortem by looking at "application.log".
-
-You can customize the error handler here at "config/initializers/backtrace.R"

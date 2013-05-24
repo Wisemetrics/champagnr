@@ -4,6 +4,12 @@
 # Specify here your preferred CRAN miror
 miror: http://cran.univ-paris1.fr
 
-# Priority to form the first
+# Descending priority
 packages:
-  - ggplot2
+  # Framework packages
+  - R.utils
+  - log4r
+  - rredis
+
+  # Your packages
+  # - ggplot2

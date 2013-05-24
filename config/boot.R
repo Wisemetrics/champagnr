@@ -1,31 +1,18 @@
 # Boot ChampaignR
 
+champaignr.root = getwd()
+
 # -- Loading packages
 
-# Defining framework's needed packages
-config.framework.packages <- c('R.utils', 'yaml', 'log4r')
-
-# Default CRAN miror
-options(repos='http://cran.univ-paris1.fr')
-
-# Install/load framework's packages
-for (package in config.framework.packages) {
-  tryCatch(library(package, character.only=TRUE),
-    error=function(e) { install.packages(package, dependencies=TRUE); library(package, character.only=TRUE) } )
-}
+library('yaml')
 
 # Defining application's packages from file "packages.yml"
 config.packages <- yaml.load_file("config/packages.yml")
 
-# Redefining CRAN miror
-options(repos=config.packages$miror)
-
-# Install/load application's packages
+# Loading
 for (package in config.packages$packages) {
-  tryCatch(library(package, character.only=TRUE),
-    error=function(e) { install.packages(package, dependencies=TRUE); library(package, character.only=TRUE) } )
+  library(package, character.only=TRUE)
 }
-
 
 # -- Setup logging
 
