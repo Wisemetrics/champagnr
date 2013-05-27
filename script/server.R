@@ -10,7 +10,7 @@ MainLoop <- function() {
   while(1) {
 
     info(logger, "Waiting for a job...")
-    list.element <- redisBRPop(config.queue.name, timeout = 0) # timeout is 0 mean it will block while the list is empty
+    list.element <- redisBLPop(config.queue.name, timeout = 0) # timeout is 0 mean it will block while the list is empty
 
     # TODO Deserialize the value (should be JSON stuff)
     func.name <- list.element[[1]]
