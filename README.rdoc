@@ -27,7 +27,7 @@ Add your needed packages into "config/packages.yml" and then run:
 
 == Server mode
 
-The server mode require a running instance of (redis)[http://redis.io/] (an in-memory key-value persistent storage). Redis will act as a queue for incoming jobs. Using a redis client (like redis-cli) push a command into the list "public_jobs" and your server will execute it.
+The server mode require a running instance of redis[http://redis.io/] (an in-memory key-value persistent storage). Redis will act as a queue for incoming jobs. Using a redis client (like redis-cli) push a command into the list "public_jobs" and your server will execute it.
 
 Configure your redis server like this:
   TODO
