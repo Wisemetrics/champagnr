@@ -27,7 +27,11 @@ logger <- create.logger()
 logfile(logger) <- file.path('log', 'application.log')
 
 # Set the current level of log
-level(logger) <- log4r:::INFO
+if (config.production) {
+  level(logger) <- log4r:::INFO
+} else {
+  level(logger) <- log4r:::DEBUG
+}
 
 info(logger, 'Booting...')
 
