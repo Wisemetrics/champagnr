@@ -10,6 +10,7 @@ packages:
   - R.utils
   - log4r
   - rredis
+  - compiler
 
   # Your packages
   # - ggplot2

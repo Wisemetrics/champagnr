@@ -2,6 +2,10 @@
 
 champaignr.root = getwd()
 
+args <- commandArgs(TRUE)
+
+config.production <- "production" %in% args
+
 # -- Loading packages
 
 library('yaml')
@@ -27,11 +31,33 @@ level(logger) <- log4r:::INFO
 
 info(logger, 'Booting...')
 
-# -- Loading initializers
+if (config.production) {
+  info(logger, 'Production mode')
+} else {
+  info(logger, 'Development mode')
+}
 
-sourceDirectory(file.path('config', 'initializers'))
+# -- Loading initializers & app
 
-# -- Loading app
+compileAndLoadDirectory <- function(directory, pattern = ".*[.](r|R|s|S|q)([.](lnk|LNK))*$", recursive = TRUE) {
+  dir.create(file.path('compiled', directory), showWarnings = FALSE, recursive = TRUE)
 
-sourceDirectory('app')
+  sources <- list.files(directory, pattern = pattern, recursive = recursive)
+  for (source in sources) {
+    source.path <- file.path(directory, source)
 
+    target <- file.path('compiled', paste(source.path, 'c', sep = ''))
+    dir.create(dirname(target), showWarnings = FALSE, recursive = TRUE)
+
+    cmpfile(source.path, target)
+    loadcmp(target)
+  }
+}
+
+if(config.production) {
+  compileAndLoadDirectory(file.path('config', 'initializers'))
+  compileAndLoadDirectory('app')
+} else {
+  sourceDirectory(file.path('config', 'initializers'))
+  sourceDirectory('app')
+}

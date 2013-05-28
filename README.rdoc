@@ -14,7 +14,7 @@ Inspired by
 From the root of your project, install required packages by running:
   R -f script/install.R
 
-And then launch your console:
+And then launch your console (with the options you want but don't forget to source "config/application.R"):
 
   R --no-save --no-restore -f config/application.R
 
