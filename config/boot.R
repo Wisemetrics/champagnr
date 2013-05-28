@@ -43,25 +43,9 @@ if (config.production) {
 
 # -- Loading initializers & app
 
-compileAndLoadDirectory <- function(directory, pattern = ".*[.](r|R|s|S|q)([.](lnk|LNK))*$", recursive = TRUE) {
-  dir.create(file.path('compiled', directory), showWarnings = FALSE, recursive = TRUE)
-
-  sources <- list.files(directory, pattern = pattern, recursive = recursive)
-  for (source in sources) {
-    source.path <- file.path(directory, source)
-
-    target <- file.path('compiled', paste(source.path, 'c', sep = ''))
-    dir.create(dirname(target), showWarnings = FALSE, recursive = TRUE)
-
-    cmpfile(source.path, target)
-    loadcmp(target)
-  }
-}
-
 if(config.production) {
-  compileAndLoadDirectory(file.path('config', 'initializers'))
-  compileAndLoadDirectory('app')
-} else {
-  sourceDirectory(file.path('config', 'initializers'))
-  sourceDirectory('app')
+  enableJIT(3)
 }
+
+sourceDirectory(file.path('config', 'initializers'))
+sourceDirectory('app')
