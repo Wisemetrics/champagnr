@@ -70,7 +70,7 @@ Here you will find config stuff that normarly have not to change except at the s
 
 This simple file contains all your needed packages. These listed packages will automatically be installed and loaded.
 
-=== config/initializers.R
+=== config/initializers
 
 This a sweet way to initialize something at startup. Just create a file per behavior and it will be automatically loaded.
 
