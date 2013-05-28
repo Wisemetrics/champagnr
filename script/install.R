@@ -12,7 +12,7 @@ InstallIfMissing = function(p) {
   }
 }
 
-InstallIfMissing('yanl')
+InstallIfMissing('yaml')
 library('yaml')
 
 # Defining application's packages from file "packages.yml"
