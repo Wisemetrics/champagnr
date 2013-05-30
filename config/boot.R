@@ -25,18 +25,23 @@ config.logger <- create.logger()
 
 # Create custom functions to avoid collisions
 log_debug <- function(message) {
+  print(paste('DEBUG', message))
   log4r::debug(config.logger, message)
 }
 log_info <- function(message) {
+  print(paste('INFO', message))
   log4r::info(config.logger, message)
 }
 log_warn <- function(message) {
+  print(paste('WARN', message))
   log4r::warn(config.logger, message)
 }
 log_error <- function(message) {
+  print(paste('ERROR', message))
   log4r::error(config.logger, message)
 }
 log_fatal <- function(message) {
+  print(paste('FATAL', message))
   log4r::fatal(config.logger, message)
 }
 

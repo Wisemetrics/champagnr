@@ -26,8 +26,6 @@ options(keep.source = TRUE, error = quote({
 
   n <- length(last.dump)
   calls <- names(last.dump)
-  cat(paste("  ", 1L:n, ": ", calls, sep = ""), sep = "\n", file=stderr())
-  cat("\n", file=stderr())
 
   log_error(geterrmessage())
   log_error(paste("  ", 1L:n, ": ", calls, sep = ""))
