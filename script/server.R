@@ -2,7 +2,12 @@ source("config/application.R")
 
 log_info("Connecting to redis instance")
 # Timeout is 1 week
-redisConnect(host = "localhost", port = 6379, timeout = 60*60*24*7)
+if (config.production) {
+  redisConnect(host = Sys.getenv('REDIS_HOST'), port = Sys.getenv('REDIS_PORT'), timeout = 60*60*24*7)
+  redisAuth(Sys.getenv('REDIS_PASS'))
+} else {
+  redisConnect(host = "localhost", port = 6379, timeout = 60*60*24*7)
+}
 
 config.queue.name <- 'public_jobs'
 
