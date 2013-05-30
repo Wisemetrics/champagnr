@@ -21,24 +21,41 @@ for (package in config.packages$packages) {
 # -- Setup logging
 
 # Defining default logger
-logger <- create.logger()
+config.logger <- create.logger()
+
+# Create custom functions to avoid collisions
+log_debug <- function(message) {
+  log4r::debug(config.logger, message)
+}
+log_info <- function(message) {
+  log4r::info(config.logger, message)
+}
+log_warn <- function(message) {
+  log4r::warn(config.logger, message)
+}
+log_error <- function(message) {
+  log4r::error(config.logger, message)
+}
+log_fatal <- function(message) {
+  log4r::fatal(config.logger, message)
+}
 
 # Defining path of the log file
-logfile(logger) <- file.path('log', 'application.log')
+logfile(config.logger) <- file.path('log', 'application.log')
 
 # Set the current level of log
 if (config.production) {
-  level(logger) <- log4r:::INFO
+  level(config.logger) <- log4r:::INFO
 } else {
-  level(logger) <- log4r:::DEBUG
+  level(config.logger) <- log4r:::DEBUG
 }
 
-info(logger, 'Booting...')
+log_info('Booting...')
 
 if (config.production) {
-  info(logger, 'Production mode')
+  log_info('Production mode')
 } else {
-  info(logger, 'Development mode')
+  log_info('Development mode')
 }
 
 # -- Loading initializers & app

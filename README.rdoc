@@ -40,11 +40,11 @@ And then run your server:
 As discribed below, all your log files are stored in the log folder. But there is a default log file that is named "application.log".
 
 You can easily write into this files with these R functions:
-  debug(logger, 'A Debugging Message') # Won't print anything
-  info(logger, 'An Info Message')
-  warn(logger, 'A Warning Message')
-  error(logger, 'An Error Message')
-  fatal(logger, 'A Fatal Error Message')
+  log_debug('A Debugging Message') # Won't print anything in production mode
+  log_info('An Info Message')
+  log_warn('A Warning Message')
+  log_error('An Error Message')
+  log_fatal('A Fatal Error Message')
 
 == Debugging
 

@@ -29,7 +29,7 @@ options(keep.source = TRUE, error = quote({
   cat(paste("  ", 1L:n, ": ", calls, sep = ""), sep = "\n", file=stderr())
   cat("\n", file=stderr())
 
-  error(logger, geterrmessage())
-  error(logger, paste("  ", 1L:n, ": ", calls, sep = ""))
+  log_error(geterrmessage())
+  log_error(paste("  ", 1L:n, ": ", calls, sep = ""))
 
 }))
