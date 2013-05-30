@@ -9,7 +9,8 @@ if (config.production) {
   redisConnect(host = "localhost", port = 6379, timeout = 60*60*24*7)
 }
 
-config.queue.name <- 'public_jobs'
+config.queue.name <- 'rqueue:public_jobs'
+config.failed_queue.name <- 'rqueue:failed'
 
 MainLoop <- function() {
   while(1) {
@@ -21,8 +22,12 @@ MainLoop <- function() {
     func.name <- list.element[[1]]
     log_debug(paste("Receive this function name:", func.name))
 
-    result <- eval(parse(text = func.name))
-    log_debug(paste("Return of function:", as.character(result)))
+    JobEvaluation <- function() {
+      result <- eval(parse(text = func.name))
+      log_debug(paste("Return of function:", as.character(result)))
+    }
+    tryCatch(JobEvaluation(),
+      error = function(e) { log_error(paste("Enqueue to failed:", func.name)); redisRPush(config.failed_queue.name, func.name) })
 
   }
 }
