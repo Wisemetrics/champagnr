@@ -27,7 +27,7 @@ MainLoop <- function() {
       log_debug(paste("Return of function:", as.character(result)))
     }
     tryCatch(JobEvaluation(),
-      error = function(e) { log_error(paste("Enqueue to failed:", func.name, e)); redisRPush(config.failed_queue.name, func.name) })
+      error = function(e) { log_error(paste("Enqueue to failed:", func.name, e)); redisRPush(config.failed_queue.name, charToRaw(func.name)) })
 
   }
 }
