@@ -27,7 +27,7 @@ MainLoop <- function() {
       log_debug(paste("Return of function:", as.character(result)))
     }
     tryCatch(JobEvaluation(),
-      error = function(e) { log_error(paste("Enqueue to failed:", func.name)); redisRPush(config.failed_queue.name, func.name) })
+      error = function(e) { log_error(paste("Enqueue to failed:", func.name, e)); redisRPush(config.failed_queue.name, func.name) })
 
   }
 }
@@ -35,8 +35,9 @@ MainLoop <- function() {
 exit_status <- 0
 
 tryCatch(MainLoop(),
-  interrupt = function(e) { log_warn('Interrupt') },
-  error = function(e) { log_fatal(as.character(e)); exit.status <<- 1 })
+  interrupt = function(e) { log_debug('Interruption of main loop'); redisClose(); },
+  error = function(e) { log_fatal(as.character(e)); exit.status <<- 1 },
+  finally = function() { log_info("Finnaly close connection"); redisClose() })
 
 redisClose()
 
