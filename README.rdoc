@@ -1,5 +1,7 @@
 == Welcome to ChampaignR framework
 
+"Rush your project faster and get your champaign earlier"
+
 ChampaignR is a highly productive, lightweight, and easy-to-use framework for R developers.
 
 It provides great features: packages management, logging, debugging, server mode, etc...
@@ -11,12 +13,13 @@ Inspired by
 
 == Getting started
 
-From the root of your project, install required packages by running:
+From the root of your project, install the required packages by running:
   R -f script/install.R
 
 And then launch your console (with the options you want but don't forget to source "config/application.R"):
 
-  R --no-save --no-restore -f config/application.R
+  R --no-save --no-restore
+  source("config/application.R")
 
 And here you go! You're ready to develop!
 
@@ -25,14 +28,32 @@ And here you go! You're ready to develop!
 Add your needed packages into "config/packages.yml" and then run:
   R -f script/install.R
 
+== Production environement
+
+There is some specific behaviors when production environement is enabled.
+To launch R in production, execute the following command:
+
+  R --args production
+
+In your code, you can test production mode like in the following example:
+
+  if (config.production) {
+    ...
+  }
+
 == Server mode
 
 The server mode require a running instance of redis[http://redis.io/] (an in-memory key-value persistent storage). Redis will act as a queue for incoming jobs. Using a redis client (like redis-cli) push a command into the list "public_jobs" and your server will execute it.
 
-Configure your redis server like this:
-  TODO
+In developement, the server mode will connect to your local redis instance.
 
-And then run your server:
+In production environement, it will connect using some environement variable. Here how to configure it:
+
+  export REDIS_HOST="..."
+  export REDIS_PORT="..."
+  export REDIS_PASS="..."
+
+To simply run your server:
   R -f script/server.R
 
 == Logging
@@ -114,7 +135,3 @@ Temporary files are stored here. Feel free to create your folders.
 
 This folder should contains cache files that R can access for a faster processing (Rdata, etc...). This folder should only contain files that can be regenerated, not important files.
 When your project will be mature, this folder can be mounted and shared among your slave computers (aka workers).
-
-=== .Rprofile
-
-This file just source config/application.R at startup. Your should not touch this file. If you need to do something at startup, just put all your stuff into config/initializers.
