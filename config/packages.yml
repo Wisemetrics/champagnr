@@ -11,7 +11,7 @@ packages:
   - log4r
   - rredis
   - compiler
-  - RUnit
+  - testthat
 
   # Your packages
   # - ggplot2
