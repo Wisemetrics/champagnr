@@ -135,3 +135,11 @@ Temporary files are stored here. Feel free to create your folders.
 
 This folder should contains cache files that R can access for a faster processing (Rdata, etc...). This folder should only contain files that can be regenerated, not important files.
 When your project will be mature, this folder can be mounted and shared among your slave computers (aka workers).
+
+== License
+
+ChampaignR is release under the {GNU LESSER GENERAL PUBLIC LICENSE}[http://www.gnu.org/copyleft/lesser.html], version 3 or later.
+
+== TODOs
+
+* Packages managment should check collision between namespaces
