@@ -8,7 +8,7 @@ It provides great features: packages management, logging, debugging, server mode
 
 Inspired by
 * Ruby On Rails for their philosophy of Convention Over Configuration, etc...
-* {ProjectTemplate}[https://github.com/johnmyleswhite/ProjectTemplate] for the job their already done by trying to make a template for all R projects.
+* {ProjectTemplate}[https://github.com/johnmyleswhite/ProjectTemplate] for the job they had already done by trying to make a template for all R projects.
 * {r-server-template}[https://github.com/HarlanH/r-server-template] for their way to maintain a R server and gracefully handle all signal that an Unix process can have.
 
 == Getting started
@@ -69,7 +69,7 @@ You can easily write into this files with these R functions:
 
 == Debugging
 
-Thanks to our logging system and the way we handle errors. All bugs that can be handled post-mortem by looking at "application.log".
+Thanks to our logging system and the way we handle errors. All bugs can be handled post-mortem by looking at "application.log".
 
 Log contains a backtrace to know where bugs come from.
 
@@ -81,11 +81,11 @@ To know more on how the framework works.
 
 === app
 
-This is the main folder where all your R files are automatically sourced. There are already some folders that represents each step of data analysis but feel free to add yours.
+This is the main folder where all your R files are automatically sourced. There are already some folders representing each step of data analysis but feel free to add yours.
 
 === config
 
-Here you will find config stuff that normarly have not to change except at the setup of your application.
+Here you will find config stuff that normarly don't change except at the setup of your application.
 
 === config/packages.yml
 
@@ -97,11 +97,11 @@ This a sweet way to initialize something at startup. Just create a file per beha
 
 === config/application.R
 
-This is the mail R file of your application. You can configure here the ChampaignR behaviors.
+This is the main R file of your application. You can configure here the ChampaignR behaviors.
 
 === config/boot.R
 
-This a our way to boot an application. You don't have edit this file.
+This is our way to boot an application. You don't have edit this file.
 
 === data
 
@@ -109,7 +109,7 @@ Simply all your raw data.
 
 === lib
 
-All the "external" librairies and more that is not part of your code.
+All the "external" librairies and more that is not part of your R code.
 
 === lib/batch
 
@@ -121,7 +121,7 @@ All your log files.
 
 === script
 
-It contains the differents way to start your R envrionement.
+It contains the different ways to start your R envrionement.
 
 === test
 
