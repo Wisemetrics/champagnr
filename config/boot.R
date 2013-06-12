@@ -1,6 +1,6 @@
-# Boot ChampaignR
+# Boot ChampagnR
 
-champaignr.root = getwd()
+champagnr.root = getwd()
 
 args <- commandArgs(TRUE)
 
@@ -46,7 +46,7 @@ log_fatal <- function(message) {
 }
 
 # Defining path of the log file
-logfile(config.logger) <- file.path(champaignr.root, 'log', 'application.log')
+logfile(config.logger) <- file.path(champagnr.root, 'log', 'application.log')
 
 # Set the current level of log
 if (config.production) {

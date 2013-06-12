@@ -1,8 +1,8 @@
-== Welcome to ChampaignR framework
+== Welcome to ChampagnR framework
 
-"Rush your project faster and get your champaign earlier"
+"Rush your project faster and get your Champagne earlier"
 
-ChampaignR is a highly productive, lightweight, and easy-to-use framework for R developers.
+ChampagnR is a highly productive, lightweight, and easy-to-use framework for R developers.
 
 It provides great features: packages management, logging, debugging, server mode, etc...
 
@@ -97,7 +97,7 @@ This a sweet way to initialize something at startup. Just create a file per beha
 
 === config/application.R
 
-This is the main R file of your application. You can configure here the ChampaignR behaviors.
+This is the main R file of your application. You can configure here the ChampagnR behaviors.
 
 === config/boot.R
 
@@ -138,7 +138,7 @@ When your project will be mature, this folder can be mounted and shared among yo
 
 == License
 
-ChampaignR is release under the {GNU LESSER GENERAL PUBLIC LICENSE}[http://www.gnu.org/copyleft/lesser.html], version 3 or later.
+ChampagnR is release under the {GNU LESSER GENERAL PUBLIC LICENSE}[http://www.gnu.org/copyleft/lesser.html], version 3 or later.
 
 == TODOs
 
