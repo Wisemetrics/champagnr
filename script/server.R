@@ -1,16 +1,6 @@
 source("config/application.R")
 
-log_info("Connecting to redis instance")
-# Timeout is 1 week
-if (config.production) {
-  redisConnect(host = Sys.getenv('REDIS_HOST'), port = Sys.getenv('REDIS_PORT'), timeout = 60*60*24*7)
-  redisAuth(Sys.getenv('REDIS_PASS'))
-} else {
-  redisConnect(host = "localhost", port = 6379, timeout = 60*60*24*7)
-}
-
-config.queue.name <- 'rqueue:public_jobs'
-config.failed_queue.name <- 'rqueue:failed'
+RqueueConnect()
 
 MainLoop <- function() {
   while(1) {
@@ -27,7 +17,7 @@ MainLoop <- function() {
       log_debug(paste("Return of function:", as.character(result)))
     }
     tryCatch(JobEvaluation(),
-      error = function(e) { log_error(paste("Enqueue to failed:", func.name, e)); redisRPush(config.failed_queue.name, charToRaw(func.name)) })
+      error = function(e) { log_error(paste("Enqueuing to failed:", func.name, e)); redisRPush(config.failed_queue.name, charToRaw(func.name)) })
 
   }
 }

@@ -69,5 +69,7 @@ if(config.production) {
   enableJIT(3)
 }
 
+source('config/rqueue.R')
+
 sourceDirectory(file.path('config', 'initializers'))
 sourceDirectory('app')
