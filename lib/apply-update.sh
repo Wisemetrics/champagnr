@@ -8,4 +8,5 @@
 
 cp config/boot.R $1/config/boot.R
 cp config/initializers/backtrace.R $1/config/initializers/backtrace.R
+cp config/initializers/rqueue.R $1/config/initializers/rqueue.R
 cp -R script/ $1/script
