@@ -6,6 +6,15 @@ args <- commandArgs(TRUE)
 
 config.production <- "production" %in% args
 
+config.testing <- "testing" %in% args
+
+## setting data path ./data if prod or dev, ./test/data if testing
+if(config.testing) {
+  champagnr.data.path <- paste(champagnr.root,'/test/data',sep="")
+} else {
+  champagnr.data.path <- paste(champagnr.root,'/data',sep="")
+}
+
 # -- Loading packages
 
 library('yaml')
@@ -59,6 +68,8 @@ log_info('Booting...')
 
 if (config.production) {
   log_info('Production mode')
+} else if(config.testing) {
+  log_info('Testing mode')
 } else {
   log_info('Development mode')
 }
