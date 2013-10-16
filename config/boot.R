@@ -55,6 +55,7 @@ log_fatal <- function(message) {
 }
 
 # Defining path of the log file
+dir.create(file.path(champagnr.root, 'log'), showWarnings = FALSE, recursive = TRUE)
 logfile(config.logger) <- file.path(champagnr.root, 'log', 'application.log')
 
 # Set the current level of log
