@@ -5,8 +5,7 @@ RqueueConnect <- function() {
   log_info("Connecting to redis instance")
   # Timeout is 1 week
   if (config.production) {
-    redisConnect(host = Sys.getenv('REDIS_HOST'), port = as.numeric(Sys.getenv('REDIS_PORT')), timeout = 60*60*24*7)
-    redisAuth(Sys.getenv('REDIS_PASS'))
+    redisConnect(host = Sys.getenv('REDIS_HOST'), port = as.numeric(Sys.getenv('REDIS_PORT')), timeout = 60*60*24*7, password = Sys.getenv('REDIS_PASS'))
   } else {
     redisConnect(host = "localhost", port = 6379, timeout = 60*60*24*7)
   }
